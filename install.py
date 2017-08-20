@@ -3,6 +3,7 @@
 import shutil
 import os
 import errno
+import time
 
 ITEMS = [
     ".vimrc",
@@ -12,7 +13,7 @@ ITEMS = [
     ".zshrc",
     ".oh-my-zsh",
     ".zshrc.pre-oh-my-zsh",
-    ".tmux",
+    ".tmux.conf",
     ".tmux.conf.local"
 ]
 
@@ -29,9 +30,8 @@ def install():
     scriptPath = os.path.realpath(__file__)
     dirPath = os.path.dirname(scriptPath)
     homePath = os.path.expanduser('~')
-    archivePath = os.path.join(dirPath, 'archive')
-    if os.path.exists(archivePath):
-        shutil.rmtree(archivePath)
+    archivePath = os.path.join(dirPath, 'archive/' + time.strftime('%Y/%m/%d/%H-%M-%S'))
+    print('Archiving current dotfiles in %s' % archivePath)
     mkdir_p(os.path.join(archivePath))
     for item in ITEMS:
         itemDest = os.path.join(homePath, item)
