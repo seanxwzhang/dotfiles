@@ -17,6 +17,9 @@ ITEMS = [
     ".tmux.conf.local"
 ]
 
+SCD = "https://github.com/pavoljuhas/smart-change-directory.git"
+ZSH = "https://github.com/zsh-users/zsh-syntax-highlighting.git"
+
 def mkdir_p(path):
     try:
         os.makedirs(path)
@@ -30,6 +33,8 @@ def install():
     scriptPath = os.path.realpath(__file__)
     dirPath = os.path.dirname(scriptPath)
     homePath = os.path.expanduser('~')
+    srcPath = os.join(homePath, 'src')
+    localPath = '/usr/local/share'
     archivePath = os.path.join(dirPath, 'archive/' + time.strftime('%Y/%m/%d/%H-%M-%S'))
     print('Archiving current dotfiles in %s' % archivePath)
     mkdir_p(os.path.join(archivePath))
@@ -40,6 +45,10 @@ def install():
         if os.path.exists(itemDest):
             shutil.move(itemDest, archivePath)
         os.symlink(itemSrc, itemDest)
+    if not os.path.exists(os.path.join(srcPath, 'smart-change-directory')):
+        os.system('git clone %s %s' % (SCD, srcPath))
+    if not os.path.eixist(os.path.join(localPath, 'zsh-syntax-highlighting')):
+        os.system('git clone %s %s' % (ZSH, localPath))
     return
 
 if __name__ == "__main__":
