@@ -3,6 +3,7 @@
 
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
+DEFAULT_USER=$USER
 
 # Set name of the theme to load. Optionally, if you set this to 'random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -84,7 +85,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias gg="~/bin/gg"
-alias ff="~/.vim_runtime/tools/ff.sh"
+alias ff="~/.oh-my-zsh/tools/ff.sh"
 
 goclone() {
     mkdir -p $GOPATH/src/code.uber.internal/$1
