@@ -1,6 +1,6 @@
 set background=dark
 let g:solarized_termcolors=256 "this is what fixed it for me
-colorscheme monokai
+colorscheme solarized
 
 " Note: Skip initialization for vim-tiny or vim-small.
 if 0 | endif
