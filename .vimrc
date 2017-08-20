@@ -11,6 +11,10 @@ source ~/.vim_runtime/my_configs.vim
 catch
 endtry
 
+try
+source ~/.vim_runtime/custom.vim
+catch
+endtry
 
 " set encoding=utf-8
 "

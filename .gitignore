@@ -1,2 +1,3 @@
 archive/*
 archive
+.vim_runtime/custom.vim
