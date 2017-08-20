@@ -33,7 +33,7 @@ def install():
     scriptPath = os.path.realpath(__file__)
     dirPath = os.path.dirname(scriptPath)
     homePath = os.path.expanduser('~')
-    srcPath = os.join(homePath, 'src')
+    srcPath = os.path.join(homePath, 'src')
     localPath = '/usr/local/share'
     archivePath = os.path.join(dirPath, 'archive/' + time.strftime('%Y/%m/%d/%H-%M-%S'))
     print('Archiving current dotfiles in %s' % archivePath)
@@ -46,9 +46,10 @@ def install():
             shutil.move(itemDest, archivePath)
         os.symlink(itemSrc, itemDest)
     if not os.path.exists(os.path.join(srcPath, 'smart-change-directory')):
-        os.system('git clone %s %s' % (SCD, srcPath))
-    if not os.path.eixist(os.path.join(localPath, 'zsh-syntax-highlighting')):
-        os.system('git clone %s %s' % (ZSH, localPath))
+        os.system('git clone %s %s' % (SCD, os.path.join(srcPath, 'smart-change-directory')))
+    if not os.path.exists(os.path.join(localPath, 'zsh-syntax-highlighting')):
+        os.system('git clone %s %s' % (ZSH, os.path.join(localPath, 'zsh-syntax-highlighting')))
+    os.system('ln -s -f ~/dotfiles/.oh-my-zsh/plugins/scd/scd /usr/local/bin/')
     return
 
 if __name__ == "__main__":
