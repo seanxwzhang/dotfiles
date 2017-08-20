@@ -1,0 +1,81 @@
+set background=dark
+let g:solarized_termcolors=256 "this is what fixed it for me
+colorscheme monokai
+
+" Note: Skip initialization for vim-tiny or vim-small.
+if 0 | endif
+
+if &compatible
+  set nocompatible               " Be iMproved
+endif
+
+" Required:
+set runtimepath+=~/.vim/bundle/neobundle.vim/
+
+" Required:
+call neobundle#begin(expand('~/.vim/bundle/'))
+
+" Let NeoBundle manage NeoBundle
+" Required:
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+" My Bundles here:
+" Refer to |:NeoBundle-examples|.
+" Note: You don't set neobundle setting in .gvimrc!
+
+call neobundle#end()
+
+" Required:
+filetype plugin indent on
+
+" If there are uninstalled bundles found on startup,
+" this will conveniently prompt you to install them.
+NeoBundleCheck
+
+" Default mapping
+let g:multi_cursor_next_key='<C-n>'
+let g:multi_cursor_prev_key='<C-p>'
+let g:multi_cursor_skip_key='<C-x>'
+let g:multi_cursor_quit_key='<Esc>'
+let g:multi_cursor_start_key='<C-n>'
+let g:multi_cursor_start_word_key='g<C-n>'
+
+augroup myvimrchooks
+    au!
+    autocmd bufwritepost .vimrc source ~/.vimrc
+augroup END
+
+let g:go_auto_type_info = 1
+set updatetime=100
+autocmd BufEnter * lcd %:p:h
+set cursorline
+hi CursorLine term=bold cterm=bold guibg=Grey60
+
+set number
+" Highlight
+let g:go_highlight_functions = 1  
+let g:go_highlight_methods = 1  
+let g:go_highlight_structs = 1  
+let g:go_highlight_operators = 1  
+let g:go_highlight_build_constraints = 1  
+
+let g:NERDTreeWinPos = "left"
+let g:godef_split = 3
+
+let g:jedi#use_splits_not_buffers = "left"
+let g:winresizer_enable = 1
+
+set clipboard=unnamed
+call pathogen#helptags()
+
+nmap <leader>p :Project %<cr>
+set winheight=30
+set winminheight=5
+nnoremap <silent> + :exe "resize " . (winheight(0) * 3/2)<CR>
+nnoremap <silent> - :exe "resize " . (winheight(0) * 2/3)<CR>
+nnoremap <silent> < :exe "resize " . (winwidth(0) * 3/2)<CR>
+nnoremap <silent> > :exe "resize " . (winwidth(0) * 3/2)<CR>
+
+nnoremap gi :GoImplements<cr>
+set statusline+=%F
+let g:airline_section_c='%F'

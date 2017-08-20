@@ -11,8 +11,8 @@ ITEMS = [
     ".vim_runtime",
     ".zsh",
     ".zshrc",
-    ".oh-my-zsh",
     ".zshrc.pre-oh-my-zsh",
+    ".oh-my-zsh",
     ".tmux.conf",
     ".tmux.conf.local"
 ]
