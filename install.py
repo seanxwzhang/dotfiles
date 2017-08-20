@@ -30,7 +30,8 @@ def install():
     dirPath = os.path.dirname(scriptPath)
     homePath = os.path.expanduser('~')
     archivePath = os.path.join(dirPath, 'archive')
-    shutil.rmtree(archivePath)
+    if os.path.exists(archivePath):
+        shutil.rmtree(archivePath)
     mkdir_p(os.path.join(archivePath))
     for item in ITEMS:
         itemDest = os.path.join(homePath, item)
